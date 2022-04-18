@@ -1,0 +1,13 @@
+mode: "debug"
+server:
+  port: 8080
+
+db:
+  host: 117.50.179.65
+  port: 5432
+  user: postgres
+  password: postgres_passwd
+  name: postgres
+
+whitelist:
+  - 127.0.0.1

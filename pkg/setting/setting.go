@@ -13,7 +13,7 @@ var (
 	DBPasswd   string
 	DBName     string
 	DBPort     int
-	WhiteList  []string
+	WhiteList  map[string]bool
 )
 
 func init() {
@@ -33,5 +33,9 @@ func init() {
 	DBUser = viper.GetString("db.user")
 	DBPasswd = viper.GetString("db.password")
 	DBPort = viper.GetInt("db.port")
-	WhiteList = viper.GetStringSlice("whitelist")
+
+	WhiteList = make(map[string]bool)
+	for _, v := range viper.GetStringSlice("whitelist") {
+		WhiteList[v] = true
+	}
 }

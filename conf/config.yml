@@ -10,4 +10,4 @@ db:
   name: postgres
 
 whitelist:
-  - 127.0.0.1
+  - 221.237.85.244

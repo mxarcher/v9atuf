@@ -2,6 +2,7 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
+	"learn/middleware"
 	"learn/pkg/setting"
 	v1 "learn/routers/v1"
 )
@@ -12,6 +13,9 @@ func InitRouter() *gin.Engine {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 	api := r.Group("/api/v1")
+
+	// 使用白名单进行ip访问限制
+	api.Use(middleware.IPWhiteList(setting.WhiteList))
 	{
 		api.GET("/user", v1.GetUsers)
 		api.POST("/user", v1.AddUser)
@@ -30,7 +34,7 @@ func InitRouter() *gin.Engine {
 
 		api.GET("/log", v1.GetLogs)
 	}
-	err := r.SetTrustedProxies(setting.WhiteList)
+	err := r.SetTrustedProxies(nil)
 	if err != nil {
 		return nil
 	}

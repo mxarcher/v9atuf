@@ -13,6 +13,7 @@ type Collection struct {
 	Name     string `json:"name"`
 	Program  string `json:"program"`
 	DataSet  string `json:"dataset"`
+	Location string `json:"location"`
 	Path     string `json:"path"`
 	Comments string `json:"comments"`
 }
